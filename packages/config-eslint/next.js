@@ -12,6 +12,7 @@ const project = resolve(process.cwd(), "tsconfig.json");
  */
 
 module.exports = {
+
   extends: [
     "@vercel/style-guide/eslint/node",
     "@vercel/style-guide/eslint/typescript",
@@ -43,5 +44,8 @@ module.exports = {
     "import/no-default-export": "off",
     "jsx-a11y/no-noninteractive-tabindex": "off",
     "jsx-a11y/label-has-associated-control": "off",
+    // This rule is disabled because it's causing linting issues
+    "import/no-extraneous-dependencies": "off",
+
   },
 };

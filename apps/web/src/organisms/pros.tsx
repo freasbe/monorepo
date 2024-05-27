@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import {Cta} from "@repo/ui/components";
+import {Cta} from "@freasbe/ui/components";
 import type {JSX} from "react";
 import Logo from '../../public/logo.png'
 

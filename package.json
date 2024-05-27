@@ -9,7 +9,7 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
-    "@repo/typescript-config": "*",
+    "@freasbe/typescript-config": "*",
     "eslint": "^8.57.0",
     "prettier": "^3.2.5",
     "prettier-plugin-tailwindcss": "^0.5.11",
@@ -24,6 +24,7 @@
     "packages/*"
   ],
   "dependencies": {
+    "@freasbe/ui": "^0.0.0",
     "framer-motion": "^11.2.6"
   }
 }

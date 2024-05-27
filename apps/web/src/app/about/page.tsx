@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import {Cta, Card, CardWithContainer} from "@repo/ui/components";
+import {Cta, Card, CardWithContainer} from "@freasbe/ui/components";
 import type {JSX} from "react";
 import installerImg from "../../assets/img/installer.png";
 import landscapeHero from "../../assets/img/landscape-hero.webp";

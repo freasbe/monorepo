@@ -1,5 +1,6 @@
-import {Cta, SectionTitle} from "@repo/ui/components";
-import React, {JSX} from "react";
+import {Cta, SectionTitle} from "@freasbe/ui/components";
+import type {JSX} from "react";
+import React from "react";
 
 export interface SectionProps {
     children: React.ReactNode;
