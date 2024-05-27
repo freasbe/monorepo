@@ -37,6 +37,8 @@ module.exports = {
   // add rules configurations here
   rules: {
     "import/no-default-export": "off",
+    "jsx-a11y/no-noninteractive-tabindex": "off",
+    "jsx-a11y/label-has-associated-control": "off",
   },
   overrides: [
     {

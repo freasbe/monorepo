@@ -4,12 +4,33 @@ import type { Config } from "tailwindcss";
 const config: Omit<Config, "content"> = {
   theme: {
     extend: {
-      backgroundImage: {
-        "glow-conic":
-          "conic-gradient(from 180deg at 50% 50%, #2a8af6 0deg, #a853ba 180deg, #e92a67 360deg)",
+      boxShadow: {
+        primary: '10px 10px 0 #84cc16',
       },
+      fontFamily : {
+        oswald: ['Oswald', 'sans-serif'],
+        lato: ['Lato', 'sans-serif'],
+        exo: ['Exo 2', 'sans-serif'],
+      }
     },
   },
-  plugins: [],
+  daisyui: {
+    themes: [
+      {
+        mytheme: {
+          "primary": "#A69077", //A69077
+          "secondary": "#654F38", // 654F38
+          "accent": "#fbbf24",
+          "neutral": "#6C7A89",
+          "base-100": "#343434",
+          "info": "#ffffff",
+          "success": "#34d399",
+          "warning": "#fde047",
+          "error": "#b91c1c",
+        },
+      },
+    ],
+  },
+  plugins: [require("daisyui")],
 };
 export default config;

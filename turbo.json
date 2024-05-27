@@ -1,14 +1,46 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalDependencies": ["**/.env.*local"],
+  "globalDependencies": [
+    "**/.env.*local",
+    ".env.local"
+  ],
+  "globalEnv": ["NEXT_PUBLIC_MAKE_LEAD_WEBHOOK_URI"],
+  "globalDotEnv": [
+    ".env"
+  ],
   "pipeline": {
     "build": {
-      "dependsOn": ["^build"],
-      "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
+      "dotEnv": [
+        ".env.production.local",
+        ".env.local",
+        ".env.production",
+        ".env"
+      ],
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        "dist/**",
+        ".next/**",
+        "!.next/cache/**"
+      ]
+    },
+    "test": {
+      "dotEnv": [
+        ".env.test.local",
+        ".env.test",
+        ".env"
+      ]
     },
     "lint": {},
     "type-check": {},
     "dev": {
+      "dotEnv": [
+        ".env.development.local",
+        ".env.local",
+        ".env.development",
+        ".env"
+      ],
       "cache": false,
       "persistent": true
     },

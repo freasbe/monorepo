@@ -1,27 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Oswald:wght@200..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap');
+
+.wrapper {
+    display: flex;
+}
+
+.font-exo {
+    font-family: 'Exo 2', sans-serif !important;
+    @apply font-semibold text-lg;
+}
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@layer base {
+    h1, h2, h3, h4, h5, h6 {
+        @apply font-oswald;
+    }
+
+    p, span, a {
+        @apply font-lato;
+    }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+
+* {
+    scroll-behavior: smooth;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.paint {
+    -webkit-text-stroke: 2px white;
+    color: transparent;
+}
+
+.fade-in {
+    animation: fade 2s;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-toast {
+    animation: fade-in-toast 0.5s;
+}
+
+@keyframes fade-in-toast {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-out-toast {
+    animation: fade-out-toast 1s;
+}
+
+@keyframes fade-out-toast {
+    from {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+}
+
+
+.img-slide-from-top {
+    animation: slide-from-top 2s;
+    transform: translateY(0);
+}
+
+@media screen and (max-width: 768px) {
+    .img-slide-from-top {
+        animation: slide-from-top 2s;
+        background-position: right center;
+        background-repeat: no-repeat;
+    }
+}
+
+@keyframes slide-from-top {
+    from {
+        transform: translateY(-100px);
+    }
+    to {
+        transform: translateY(0);
+    }
 }

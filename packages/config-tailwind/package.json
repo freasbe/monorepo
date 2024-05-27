@@ -8,5 +8,8 @@
   "devDependencies": {
     "@repo/typescript-config": "*",
     "tailwindcss": "^3.4.1"
+  },
+  "dependencies": {
+    "daisy": "^0.2.0"
   }
 }

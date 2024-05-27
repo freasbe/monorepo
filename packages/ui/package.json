@@ -6,7 +6,7 @@
   ],
   "exports": {
     "./styles.css": "./dist/index.css",
-    "./card": "./src/card.tsx"
+    "./components": "./src/components/index.ts"
   },
   "license": "MIT",
   "scripts": {
@@ -22,11 +22,17 @@
     "@repo/eslint-config": "*",
     "@repo/tailwind-config": "*",
     "@repo/typescript-config": "*",
+    "@types/js-cookie": "^3.0.6",
     "@types/react": "^18.2.61",
     "autoprefixer": "^10.4.18",
     "postcss": "^8.4.35",
     "react": "^18.2.0",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "daisyui": "^4.11.1",
+    "framer-motion": "^11.2.6",
+    "next": "^14.2.3"
   }
 }
