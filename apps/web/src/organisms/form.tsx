@@ -1,5 +1,5 @@
 "use client";
-import React, {useEffect, useState, useRef, JSX} from "react";
+import React, { useEffect, useState, useRef, useCallback, JSX } from "react";
 import Link from "next/link";
 
 enum Typologie {
@@ -98,42 +98,49 @@ const FormSection: React.FC = () => {
         }
     };
 
-    const handleSubmit = (): void => {
-        if (validateInput(form)) {
-            const makeUrl = process.env.NEXT_PUBLIC_MAKE_LEAD_WEBHOOK_URI;
-            if (makeUrl) {
-                fetch(makeUrl, {
-                    method: 'POST',
-                    body: JSON.stringify(form),
-                    headers: { 'Content-Type': 'application/json' },
-                }).then(response => {
-                    setToastValues({
-                        error: !response.ok,
-                        className: 'fade-in-toast',
-                        message: response.ok ? 'Formulaire soumis avec succès' : 'Erreur lors de la soumission du formulaire',
-                        displayToast: true,
-                        url: response.ok ? formUriHandler() : ''
+    const debouncedSubmit = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+    const handleSubmit = useCallback((): void => {
+        if (debouncedSubmit.current) {
+            clearTimeout(debouncedSubmit.current);
+        }
+        debouncedSubmit.current = setTimeout(() => {
+            if (validateInput(form)) {
+                const makeUrl = process.env.NEXT_PUBLIC_MAKE_LEAD_WEBHOOK_URI;
+                if (makeUrl) {
+                    fetch(makeUrl, {
+                        method: 'POST',
+                        body: JSON.stringify(form),
+                        headers: { 'Content-Type': 'application/json' },
+                    }).then(response => {
+                        setToastValues({
+                            error: !response.ok,
+                            className: 'fade-in-toast',
+                            message: response.ok ? 'Formulaire soumis avec succès' : 'Erreur lors de la soumission du formulaire',
+                            displayToast: true,
+                            url: response.ok ? formUriHandler() : ''
+                        });
+                    }).catch(_ => {
+                        setToastValues({
+                            error: true,
+                            className: 'fade-in-toast',
+                            message: 'Erreur lors de la soumission du formulaire',
+                            displayToast: true,
+                            url: ''
+                        });
                     });
-                }).catch(_ => {
+                } else {
                     setToastValues({
-                        error: true,
-                        className: 'fade-in-toast',
-                        message: 'Erreur lors de la soumission du formulaire',
                         displayToast: true,
+                        message: 'Erreur lors de la soumission du formulaire',
+                        className: 'fade-in-toast',
+                        error: true,
                         url: ''
                     });
-                });
-            } else {
-                setToastValues({
-                    displayToast: true,
-                    message: 'Erreur lors de la soumission du formulaire',
-                    className: 'fade-in-toast',
-                    error: true,
-                    url: ''
-                });
+                }
             }
-        }
-    };
+        }, 300); // Adjust the delay time as needed
+    }, [form, formUriHandler]);
 
     const validateInput = (formData: FormState): boolean => {
         if (!Object.values(Typologie).includes(formData.typologie as Typologie)) {
